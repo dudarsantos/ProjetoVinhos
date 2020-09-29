@@ -13,26 +13,19 @@ function ClientesFieis() {
 
   return ( 
 <div>
-    <h1>Clientes</h1>
-    <span>
-        Clientes com maior valor em compras:
-    </span>
+    <h1>Nossos clientes fiéis:</h1>
 
     <table>
       <thead>
-        <th>Id |</th>
         <th>Nome |</th>
-        <th>CPF |</th>
         <th>Total em Compras</th>
       </thead>
       <tbody>
 
         {clientesFieis.map((item) => {
           return(
-          <tr>
-          <td>{item.id}</td> 
+          <tr> 
           <td>{item.nome}</td> 
-          <td>{item.cpf}</td> 
           <td>{item.valorTotal}</td> 
           </tr>)
         })}

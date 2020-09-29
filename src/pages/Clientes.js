@@ -18,7 +18,6 @@ function Clientes() {
 
     <table>
       <thead>
-        <th>Id |</th>
         <th>Nome |</th>
         <th>CPF |</th>
         <th>Total em Compras</th>
@@ -28,7 +27,6 @@ function Clientes() {
         {clientes.map((item) => {
           return(
           <tr>
-          <td>{item.id}</td> 
           <td>{item.nome}</td> 
           <td>{item.cpf}</td> 
           <td>{item.valorTotal}</td> 
