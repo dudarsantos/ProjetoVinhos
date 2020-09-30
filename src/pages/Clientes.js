@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import api from '../Services/Api';
-import './Clientes.css';
-
+import './Home.css'; 
 
 function Clientes() {
   const [clientes, setClientes] = useState([]); 
@@ -13,13 +12,13 @@ function Clientes() {
   }, [])
 
   return ( 
-<div>
+<div className="container3">
     <h1>Clientes com maior valor em compras:</h1>
 
     <table>
       <thead>
-        <th>Nome |</th>
-        <th>CPF |</th>
+        <th>Nome </th>
+        <th>CPF </th>
         <th>Total em Compras</th>
       </thead>
       <tbody>
@@ -29,11 +28,16 @@ function Clientes() {
           <tr>
           <td>{item.nome}</td> 
           <td>{item.cpf}</td> 
-          <td>{item.valorTotal}</td> 
+          <td>{item.valorTotal.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+          })}
+          </td>
           </tr>)
         })}
       </tbody>
     </table>
+
   </div>
   );
 }

@@ -1,42 +1,62 @@
 import React, {useState, useEffect} from 'react';
 import api from '../Services/Api';
+import './RecomendaVinho.css';
 
 function RecomendaVinho() {
-    const [recomendaVinho, setRecomendaVinho] = useState([]);
+    const [clients, setClients] = useState([]);
+    const [wineRecommended, setWineRecommended] = useState(" ");
+    const [client, setClient] = useState([]);
+        
+        useEffect(() => {
+                api.get('/clients').then((response)=> {
+                setClients(response.data);
+            });
+        }, []); 
 
-            useEffect(() => {
-                api.get('/recommendWine/:client').then((response)=> {
-                setRecomendaVinho(response)
-            })}, []);
+        const recommendWine = (cliente) => {
+            api.get(`/recommendWine/${cliente}`).then((response) => {
+                setWineRecommended(response.data);
+            });
+        };
 
 
             return (
-                <div>
-                    <span>
+                <div className="containerX">
+                    <h1>
                         Clientes com maior valor em compras:
-                    </span>
+                    </h1>
 
-            <table>
-            <thead>
-                <th>Id |</th>
-                <th>Nome |</th>
-                <th>CPF |</th>
-                <th>Total em Compras</th>
-            </thead>
-            <tbody>
+                    <div>
 
-                {recomendaVinho.map((item) => {
-                return(
-                <tr>
-                <td>{item.id}</td> 
-                <td>{item.nome}</td> 
-                <td>{item.cpf}</td> 
-                <td>{item.valorTotal}</td> 
-                </tr>)
-                })}
-            </tbody>
-            </table>
-        </div>
+
+                        <h2>Selecione um cliente:</h2>
+
+                        <select
+                            onChange={(event) => {
+                            let cpf = event.target.value.replace(/-|\.|/gi,"");
+                            recommendWine(cpf);
+                        }}
+                        >
+                        <option></option>
+                        {clients.map((item) => (
+                            <option key={item.map} value={item.cpf}>
+                                {item.nome}
+                            </option>
+                        ))}
+                        </select>
+
+                        <table>
+                        <thead>
+                            <th>Produto:</th> {wineRecommended && wineRecommended.produto}
+                            <th>Variedade:</th> {wineRecommended && wineRecommended.variedade}
+                            <th>País:</th> {wineRecommended && wineRecommended.pais}
+                            <th>Categoria:</th> {wineRecommended && wineRecommended.categoria}
+                            <th>Safra:</th> {wineRecommended && wineRecommended.safra}
+                        </thead>
+                        </table>
+
+                    </div>
+                </div>
 
             
     );

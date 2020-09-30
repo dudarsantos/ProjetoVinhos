@@ -1,0 +1,29 @@
+
+.containerX {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.containerX h1 {
+    color: #76323f;
+    font-size: 50px;
+}
+
+.containerX h2 {
+    padding-top: 30px;
+    color: #76323f;
+    font-size: 35px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.containerX th {
+    display: block;
+    justify-content: space-around;
+    text-align: center;
+    color: #76323f;
+    font-size: 20px;
+    padding-top: 20px;
+    padding-right:20px;
+}

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import api from '../Services/Api';
-
+import './Home.css'; 
 
 function ClientesFieis() {
   const [clientesFieis, setClientesFieis] = useState([]); 
@@ -12,12 +12,12 @@ function ClientesFieis() {
   }, [])
 
   return ( 
-<div>
+<div className="container4">
     <h1>Nossos clientes fiéis:</h1>
 
     <table>
       <thead>
-        <th>Nome |</th>
+        <th>Nome </th>
         <th>Total em Compras</th>
       </thead>
       <tbody>
@@ -25,14 +25,16 @@ function ClientesFieis() {
         {clientesFieis.map((item) => {
           return(
           <tr> 
-          <td>{item.nome}</td> 
-          <td>{item.valorTotal}</td> 
-          </tr>)
+            <td> {item.nome} </td>
+            <td> {item.totalCompras} </td>
+          </tr>
+          )
         })}
       </tbody>
     </table>
+
   </div>
   );
-}
+};
 
 export default ClientesFieis;
